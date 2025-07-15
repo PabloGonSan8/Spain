@@ -1,16 +1,18 @@
 package es.spain.controller;
 
-import es.spain.dto.LocalidadDTO;
 import es.spain.dto.LocalidadNombreDTO;
+import es.spain.dto.ProvinciaCcaaDTO;
 import es.spain.dto.ProvinciaDTO;
-import es.spain.dto.ProvinciaLocalidadDto;
+import es.spain.dto.ProvinciaLocalidadDTO;
 import es.spain.model.Provincia;
 import es.spain.repository.ProvinciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -32,23 +34,26 @@ public class ProvinciaController {
 
 
     @GetMapping("byName")
-    public ProvinciaDTO getProvinciaByName(@RequestParam(value = "name") String name){
+    public ProvinciaCcaaDTO getProvinciaByName(@RequestParam(value = "name") String name) {
         return provinciaRepository.findAll().stream()
                 .filter(p -> p.getNombre().equalsIgnoreCase(name))
                 .findFirst()
-                .map(this::mapToDto)
-                .orElseThrow();
+                .map(provincia -> {
+                    String ccaaNombre = provincia.getCcaa().getNombre(); // <-- obtener nombre de la CCAA
+                    return new ProvinciaCcaaDTO(provincia.getNombre(), ccaaNombre);
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
 
     @GetMapping("localidades")
-    public List<ProvinciaLocalidadDto> getProvinciaLocalidad() {
+    public List<ProvinciaLocalidadDTO> getProvinciaLocalidad() {
         return provinciaRepository.findAll().stream()
                 .map(provincia -> {
                     List<LocalidadNombreDTO> localidadDtos = provincia.getLocalidades().stream()
                             .map(loc -> new LocalidadNombreDTO(loc.getNombre()))
                             .toList();
-                    return new ProvinciaLocalidadDto(provincia.getNombre(), localidadDtos);
+                    return new ProvinciaLocalidadDTO(provincia.getNombre(), localidadDtos);
                 })
                 .toList();
     }

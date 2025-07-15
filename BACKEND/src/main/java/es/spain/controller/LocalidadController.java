@@ -4,10 +4,12 @@ import es.spain.dto.LocalidadDTO;
 import es.spain.model.Localidad;
 import es.spain.repository.LocalidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class LocalidadController {
                 .filter(l -> l.getNombre().equalsIgnoreCase(name))
                 .findFirst()
                 .map(this::mapToDto)
-                .orElseThrow();
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
 
