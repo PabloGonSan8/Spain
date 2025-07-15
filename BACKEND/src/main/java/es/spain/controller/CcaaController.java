@@ -1,8 +1,6 @@
 package es.spain.controller;
 
-import es.spain.dto.CcaaDTO;
-import es.spain.dto.CcaaProvinciaDTO;
-import es.spain.dto.ProvinciaDTO;
+import es.spain.dto.*;
 import es.spain.model.Ccaa;
 import es.spain.repository.CcaaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
