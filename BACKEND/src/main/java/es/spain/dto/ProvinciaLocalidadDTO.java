@@ -2,12 +2,12 @@ package es.spain.dto;
 
 import java.util.List;
 
-public class ProvinciaLocalidadDto {
+public class ProvinciaLocalidadDTO {
 
     private String nombre;
     private List<LocalidadNombreDTO> localidades;
 
-    public ProvinciaLocalidadDto(String nombre, List<LocalidadNombreDTO> localidades) {
+    public ProvinciaLocalidadDTO(String nombre, List<LocalidadNombreDTO> localidades) {
         this.nombre = nombre;
         this.localidades = localidades;
     }
