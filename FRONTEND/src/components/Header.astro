@@ -1,0 +1,11 @@
+---
+const { class: className } = Astro.props
+---
+
+<header class=`w-full p-2 lg:p-8 flex justify-between items-center ${className}`>
+    <h1 class="text-2xl font-bold">España</h1>
+    <nav class="flex flex-col lg:flex-row text-center  lg:gap-3">
+        <a href="">Caracteristicas</a>
+        <a href="">Documentacion</a>
+    </nav>
+</header>
