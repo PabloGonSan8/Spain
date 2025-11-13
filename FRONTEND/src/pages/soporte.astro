@@ -1,0 +1,15 @@
+---
+import Layout from '@layouts/Layout.astro';
+---
+
+<Layout title="Soporte">
+  <section class="max-w-2xl mx-auto text-center text-white py-16">
+    <h1 class="text-4xl font-bold mb-6">Soporte y Reporte de Errores</h1>
+    <p class="text-lg text-gray-300 mb-8">¿Tienes algún problema o quieres reportar un error? Escríbenos a <a href="mailto:soporte@spainapi.com" class="text-blue-400 underline">soporte@spainapi.com</a> o utiliza el siguiente formulario:</p>
+    <form class="space-y-4 max-w-md mx-auto">
+      <input type="email" placeholder="Tu correo electrónico" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600" required />
+      <textarea placeholder="Describe el problema o error..." class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600" rows="5" required></textarea>
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Enviar</button>
+    </form>
+  </section>
+</Layout> 

@@ -1,0 +1,28 @@
+spring.datasource.url=jdbc:postgresql://dpg-d1mip9m3jp1c73eu36ng-a.oregon-postgres.render.com:5432/spain_7vc9
+spring.datasource.username=spain_7vc9_user
+spring.datasource.password=xmJ7oFZwPcmMQ7bKDBqQd93sQ3tA2GDC
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+
+# Puerto (opcional)
+# server.port=8080
+server.port=${PORT:8080}
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+
+
+spring.datasource.url=${DB_URL}
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+server.port=${PORT:8080}
