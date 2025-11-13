@@ -1,10 +1,170 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout title="Documentación">
-  <header class="max-w-2xl mx-auto text-center text-white pt-4">
-    <h1 class="text-4xl font-bold mb-6">Documentación</h1>
-    <p class="text-lg text-gray-300 mb-8">Aquí encontrarás la documentación de la API española, ejemplos de uso y detalles de los endpoints.</p>
+  <header class="max-w-2xl mx-auto text-center text-white pt-4 mb-12">
+    <h1 class="text-4xl font-bold mb-4">Documentación de la API</h1>
+    <p class="text-lg text-gray-300">
+      Consulta los distintos endpoints disponibles en la API de España para obtener información de comunidades autónomas, provincias y localidades.
+    </p>
   </header>
-</Layout> 
+
+  <main class="max-w-4xl mx-auto text-white px-4 space-y-10">
+    <!-- 🏙️ Comunidades Autónomas -->
+    <section class="bg-white/10 p-6 rounded-xl border border-white/20">
+      <h2 class="text-2xl font-semibold mb-6">🏙️ Comunidades Autónomas</h2>
+
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            Todas las comunidades con sus provincias y localidades
+          </h3>
+          <div
+            class="flex flex-wrap sm:flex-nowrap items-center gap-3 bg-white/5 px-4 py-2 rounded-lg border border-white/10"
+          >
+            <span
+              class="bg-white/80 text-green-500 font-bold px-3 py-1 rounded-md text-sm flex-shrink-0"
+              >GET</span
+            >
+            <code class="text-blue-400 text-sm break-all">/</code>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            Todas las comunidades autónomas
+          </h3>
+          <div
+            class="flex flex-wrap sm:flex-nowrap items-center gap-3 bg-white/5 px-4 py-2 rounded-lg border border-white/10"
+          >
+            <span
+              class="bg-white/80 text-green-500 font-bold px-3 py-1 rounded-md text-sm flex-shrink-0"
+              >GET</span
+            >
+            <code class="text-blue-400 text-sm break-all">/ccaa</code>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            Comunidad autónoma por nombre
+          </h3>
+          <div
+            class="flex flex-wrap sm:flex-nowrap items-center gap-3 bg-white/5 px-4 py-2 rounded-lg border border-white/10"
+          >
+            <span
+              class="bg-white/80 text-green-500 font-bold px-3 py-1 rounded-md text-sm flex-shrink-0"
+              >GET</span
+            >
+            <code class="text-blue-400 text-sm break-all"
+              >/ccaa/byName?name=Andalucia</code
+            >
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            Comunidades autónomas con sus provincias
+          </h3>
+          <div
+            class="flex flex-wrap sm:flex-nowrap items-center gap-3 bg-white/5 px-4 py-2 rounded-lg border border-white/10"
+          >
+            <span
+              class="bg-white/80 text-green-500 font-bold px-3 py-1 rounded-md text-sm flex-shrink-0"
+              >GET</span
+            >
+            <code class="text-blue-400 text-sm break-all">/ccaa/provincia</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🏞️ Provincias -->
+    <section class="bg-white/10 p-6 rounded-xl border border-white/20">
+      <h2 class="text-2xl font-semibold mb-6">🏞️ Provincias</h2>
+
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-2">Todas las provincias</h3>
+          <div
+            class="flex flex-wrap sm:flex-nowrap items-center gap-3 bg-white/5 px-4 py-2 rounded-lg border border-white/10"
+          >
+            <span
+              class="bg-white/80 text-green-500 font-bold px-3 py-1 rounded-md text-sm flex-shrink-0"
+              >GET</span
+            >
+            <code class="text-blue-400 text-sm break-all">/provincias</code>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-2">Provincia por nombre</h3>
+          <div
+            class="flex flex-wrap sm:flex-nowrap items-center gap-3 bg-white/5 px-4 py-2 rounded-lg border border-white/10"
+          >
+            <span
+              class="bg-white/80 text-green-500 font-bold px-3 py-1 rounded-md text-sm flex-shrink-0"
+              >GET</span
+            >
+            <code class="text-blue-400 text-sm break-all"
+              >/provincias/byName?name=Cordoba</code
+            >
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-2">
+            Provincias con sus localidades
+          </h3>
+          <div
+            class="flex flex-wrap sm:flex-nowrap items-center gap-3 bg-white/5 px-4 py-2 rounded-lg border border-white/10"
+          >
+            <span
+              class="bg-white/80 text-green-500 font-bold px-3 py-1 rounded-md text-sm flex-shrink-0"
+              >GET</span
+            >
+            <code class="text-blue-400 text-sm break-all"
+              >/provincias/localidades</code
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🏡 Localidades -->
+    <section class="bg-white/10 p-6 rounded-xl border border-white/20">
+      <h2 class="text-2xl font-semibold mb-6">🏡 Localidades</h2>
+
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-2">Todas las localidades</h3>
+          <div
+            class="flex flex-wrap sm:flex-nowrap items-center gap-3 bg-white/5 px-4 py-2 rounded-lg border border-white/10"
+          >
+            <span
+              class="bg-white/80 text-green-500 font-bold px-3 py-1 rounded-md text-sm flex-shrink-0"
+              >GET</span
+            >
+            <code class="text-blue-400 text-sm break-all">/localidades</code>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-2">Localidad por nombre</h3>
+          <div
+            class="flex flex-wrap sm:flex-nowrap items-center gap-3 bg-white/5 px-4 py-2 rounded-lg border border-white/10"
+          >
+            <span
+              class="bg-white/80 text-green-500 font-bold px-3 py-1 rounded-md text-sm flex-shrink-0"
+              >GET</span
+            >
+            <code class="text-blue-400 text-sm break-all"
+              >/localidades/byName?name=Cebreros</code
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
