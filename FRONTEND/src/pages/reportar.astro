@@ -1,0 +1,16 @@
+---
+import PagesHeader from "@components/PagesHeader.astro";
+import Report from "@components/report/Report.astro";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Reportar un problema">
+  <PagesHeader
+    title="Reportar un problema"
+    description="Si has encontrado un error o quieres sugerir una mejora, puedes reportarlo directamente en nuestro repositorio de GitHub."
+  />
+
+  <main class="max-w-4xl mx-auto text-white px-4 space-y-10">
+    <Report />
+  </main>
+</Layout>

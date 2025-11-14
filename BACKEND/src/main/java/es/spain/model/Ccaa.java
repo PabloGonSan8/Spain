@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="ccaa")
+@Table(name = "ccaa")
 public class Ccaa {
 
     @Id
-    @Column(name = "idCcaa")
+    @Column(name = "idccaa")
     private Long idCcaa;
 
-    @Column(name = "Nombre", nullable = false, length = 50)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
     /* Relación 1‑N con provincias */

@@ -1,0 +1,68 @@
+---
+import Documentation from "@components/documentation/Documentation.astro";
+import EndPoint from "@components/documentation/EndPoint.astro";
+import PagesHeader from "@components/PagesHeader.astro";
+import Endpointsection from "@layouts/documentation/endpointsection.astro";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Documentación">
+  <PagesHeader
+    title="Documentación de la API"
+    description="Consulta los distintos endpoints disponibles en la API de España para obtener información de comunidades autónomas, provincias y localidades."
+  />
+
+  <main class="max-w-4xl mx-auto text-white px-4 space-y-10">
+    <!-- ⚙️ Backend: Cómo levantar la API -->
+    <Documentation />
+
+    <!-- 🏙️ Comunidades Autónomas -->
+    <Endpointsection title={"🏙️ Comunidades Autónomas"}>
+      <EndPoint
+        title="Todas las comunidades con sus provincias y localidades"
+        method="GET"
+        code="/"
+      />
+      <EndPoint
+        title="Todas las comunidades autónomas"
+        method="GET"
+        code="/ccaa"
+      />
+      <EndPoint
+        title="Comunidad autónoma por nombre"
+        method="GET"
+        code="/ccaa/byName?name={CcAa}"
+      />
+      <EndPoint
+        title="Comunidades autónomas con sus provincias"
+        method="GET"
+        code="/ccaa/provincia"
+      />
+    </Endpointsection>
+    <Endpointsection title={"🏞️ Provincias"}>
+      <EndPoint title="Todas las provincias" method="GET" code="/provincias" />
+      <EndPoint
+        title="Provincia por nombre"
+        method="GET"
+        code="/provincias/byName?name={Provincia}"
+      />
+      <EndPoint
+        title="Provincias con sus localidades"
+        method="GET"
+        code="/provincias/localidades"
+      />
+    </Endpointsection>
+    <Endpointsection title={"🏡 Localidades"}>
+      <EndPoint
+        title="Todas las localidades"
+        method="GET"
+        code="/localidades"
+      />
+      <EndPoint
+        title="Localidad por nombre"
+        method="GET"
+        code="/localidades/byName?name={Localidad}"
+      />
+    </Endpointsection>
+  </main>
+</Layout>

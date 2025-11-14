@@ -1,9 +1,13 @@
 ---
-import Header from '@components/Header.astro';
-import Footer from './Footer.astro';
+import Header from "@components/Header.astro";
+import Enlaces from "./Enlaces.astro";
+import Footer from "./Footer.astro";
 ---
-<Header class:list={"h-[10vh]"}/>
-<main class="h-[85vh]">
 
+<main class="min-h-screen flex items-center justify-center px-4">
+    <div class="max-w-4xl mx-auto text-center text-white">
+        <Header />
+        <Enlaces />
+        <Footer />
+    </div>
 </main>
-<Footer class:list={"h-[10vh]"}/>
