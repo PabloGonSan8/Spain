@@ -2,7 +2,7 @@
 import Documentation from "@components/documentation/Documentation.astro";
 import EndPoint from "@components/documentation/EndPoint.astro";
 import PagesHeader from "@components/PagesHeader.astro";
-import Endpointsection from "@layouts/documentation/endpointsection.astro";
+import EndPointSection from "@layouts/documentation/EndPointSection.astro";
 import Layout from "@layouts/Layout.astro";
 ---
 
@@ -17,7 +17,7 @@ import Layout from "@layouts/Layout.astro";
     <Documentation />
 
     <!-- 🏙️ Comunidades Autónomas -->
-    <Endpointsection title={"🏙️ Comunidades Autónomas"}>
+    <EndPointSection title={"🏙️ Comunidades Autónomas"}>
       <EndPoint
         title="Todas las comunidades con sus provincias y localidades"
         method="GET"
@@ -38,8 +38,8 @@ import Layout from "@layouts/Layout.astro";
         method="GET"
         code="/ccaa/provincia"
       />
-    </Endpointsection>
-    <Endpointsection title={"🏞️ Provincias"}>
+    </EndPointSection>
+    <EndPointSection title={"🏞️ Provincias"}>
       <EndPoint title="Todas las provincias" method="GET" code="/provincias" />
       <EndPoint
         title="Provincia por nombre"
@@ -51,8 +51,8 @@ import Layout from "@layouts/Layout.astro";
         method="GET"
         code="/provincias/localidades"
       />
-    </Endpointsection>
-    <Endpointsection title={"🏡 Localidades"}>
+    </EndPointSection>
+    <EndPointSection title={"🏡 Localidades"}>
       <EndPoint
         title="Todas las localidades"
         method="GET"
@@ -63,6 +63,6 @@ import Layout from "@layouts/Layout.astro";
         method="GET"
         code="/localidades/byName?name={Localidad}"
       />
-    </Endpointsection>
+    </EndPointSection>
   </main>
 </Layout>
