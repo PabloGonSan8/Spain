@@ -2,8 +2,8 @@ package es.spain.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "ccaa")
@@ -18,13 +18,13 @@ public class Ccaa {
 
     /* Relación 1‑N con provincias */
     @OneToMany(mappedBy = "ccaa", fetch = FetchType.LAZY)
-    private List<Provincia> provincias;
+    private Set<Provincia> provincias;
 
-    public List<Provincia> getProvincias() {
+    public Set<Provincia> getProvincias() {
         return provincias;
     }
 
-    public void setProvincias(List<Provincia> provincias) {
+    public void setProvincias(Set<Provincia> provincias) {
         this.provincias = provincias;
     }
 

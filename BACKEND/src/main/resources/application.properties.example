@@ -9,10 +9,10 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
-# Configuracion de conexion a SupaBase
-spring.datasource.url=jdbc:postgresql://dpg-d1mip9m3jp1c73eu36ng-a.oregon-postgres.render.com:5432/spain_7vc9
-spring.datasource.username=spain_7vc9_user
-spring.datasource.password=xmJ7oFZwPcmMQ7bKDBqQd93sQ3tA2GDC
+# Configuracion de conexion a PostgreSQL (Supabase / Render / Railway)
+spring.datasource.url=jdbc:postgresql://YOUR_HOST:5432/YOUR_DB_NAME
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
 spring.datasource.driver-class-name=org.postgresql.Driver
 
 spring.jpa.hibernate.ddl-auto=update

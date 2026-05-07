@@ -1,7 +1,6 @@
 package es.spain.controller;
 
 import es.spain.dto.LocalidadDTO;
-import es.spain.model.Localidad;
 import es.spain.repository.LocalidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,24 +19,17 @@ public class LocalidadController {
     @Autowired
     private LocalidadRepository localidadRepository;
 
-
-    private LocalidadDTO mapToDto(Localidad localidad){
-        return new LocalidadDTO(localidad.getNombre(),localidad.getProvincia().getNombre(),localidad.getProvincia().getCcaa().getNombre());
-    }
-
     @GetMapping
-    public List<LocalidadDTO> getAllLocalidad(){
-        return localidadRepository.findAll().stream().map(this::mapToDto).toList();
+    public List<LocalidadDTO> getAllLocalidad() {
+        return localidadRepository.findAllWithProvinciaAndCcaa().stream()
+                .map(l -> new LocalidadDTO(l.getNombre(), l.getProvincia().getNombre(), l.getProvincia().getCcaa().getNombre()))
+                .toList();
     }
 
     @GetMapping("byName")
-    public LocalidadDTO getLocalidadByName(@RequestParam(value = "name") String name){
-        return localidadRepository.findAll().stream()
-                .filter(l -> l.getNombre().equalsIgnoreCase(name))
-                .findFirst()
-                .map(this::mapToDto)
+    public LocalidadDTO getLocalidadByName(@RequestParam String name) {
+        return localidadRepository.findByNombreIgnoreCaseWithProvincia(name)
+                .map(l -> new LocalidadDTO(l.getNombre(), l.getProvincia().getNombre(), l.getProvincia().getCcaa().getNombre()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
-
-
 }

@@ -4,7 +4,6 @@ import es.spain.dto.LocalidadNombreDTO;
 import es.spain.dto.ProvinciaCcaaDTO;
 import es.spain.dto.ProvinciaDTO;
 import es.spain.dto.ProvinciaLocalidadDTO;
-import es.spain.model.Provincia;
 import es.spain.repository.ProvinciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,32 +22,23 @@ public class ProvinciaController {
     @Autowired
     private ProvinciaRepository provinciaRepository;
 
-    private ProvinciaDTO mapToDto(Provincia provincia){
-        return new ProvinciaDTO(provincia.getNombre());
-    }
-
     @GetMapping
-    public List<ProvinciaDTO> getAllProvincias(){
-        return provinciaRepository.findAll().stream().map(this::mapToDto).toList();
+    public List<ProvinciaDTO> getAllProvincias() {
+        return provinciaRepository.findAll().stream()
+                .map(p -> new ProvinciaDTO(p.getNombre()))
+                .toList();
     }
-
 
     @GetMapping("byName")
-    public ProvinciaCcaaDTO getProvinciaByName(@RequestParam(value = "name") String name) {
-        return provinciaRepository.findAll().stream()
-                .filter(p -> p.getNombre().equalsIgnoreCase(name))
-                .findFirst()
-                .map(provincia -> {
-                    String ccaaNombre = provincia.getCcaa().getNombre(); // <-- obtener nombre de la CCAA
-                    return new ProvinciaCcaaDTO(provincia.getNombre(), ccaaNombre);
-                })
+    public ProvinciaCcaaDTO getProvinciaByName(@RequestParam String name) {
+        return provinciaRepository.findByNombreIgnoreCaseWithCcaa(name)
+                .map(p -> new ProvinciaCcaaDTO(p.getNombre(), p.getCcaa().getNombre()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-
     @GetMapping("localidades")
     public List<ProvinciaLocalidadDTO> getProvinciaLocalidad() {
-        return provinciaRepository.findAll().stream()
+        return provinciaRepository.findAllWithLocalidades().stream()
                 .map(provincia -> {
                     List<LocalidadNombreDTO> localidadDtos = provincia.getLocalidades().stream()
                             .map(loc -> new LocalidadNombreDTO(loc.getNombre()))
@@ -57,6 +47,4 @@ public class ProvinciaController {
                 })
                 .toList();
     }
-
-
 }

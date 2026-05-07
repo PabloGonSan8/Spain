@@ -7,14 +7,14 @@ interface Props {
   color?: string;
 }
 
-const { href, icon, title, description, color = 'blue' } = Astro.props;
+const { href, icon, title, description, color = 'blue-400' } = Astro.props;
 ---
 
 <a
   href={href}
   class="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105"
 >
-  <div class={color + "mb-4"}>
+  <div class={"text-" + color + " mb-4"}>
     <svg
       class="w-12 h-12 mx-auto"
       fill="none"

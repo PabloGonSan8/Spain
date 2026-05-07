@@ -2,8 +2,8 @@ package es.spain.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -24,13 +24,13 @@ public class Provincia {
 
     /* Relación con Localidad */
     @OneToMany(mappedBy = "provincia", fetch = FetchType.LAZY)
-    private List<Localidad> localidades;
+    private Set<Localidad> localidades;
 
-    public List<Localidad> getLocalidades() {
+    public Set<Localidad> getLocalidades() {
         return localidades;
     }
 
-    public void setLocalidades(List<Localidad> localidades) {
+    public void setLocalidades(Set<Localidad> localidades) {
         this.localidades = localidades;
     }
 

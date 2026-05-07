@@ -1,144 +1,101 @@
 # 🇪🇸 API España
 
-Este proyecto ofrece una **API REST profesional** desarrollada con **Spring Boot**, junto con un **Frontend moderno en Astro**, para consultar datos administrativos de España:  
-**comunidades autónomas, provincias y localidades**.
+API REST desarrollada con **Spring Boot** para consultar datos administrativos de España: comunidades autónomas, provincias y localidades.
 
-El objetivo es proporcionar una herramienta **sólida, clara y escalable**, pensada tanto para desarrolladores como para empresas que necesiten integrar datos territoriales de España en sus sistemas.
-
----
-
-## 📌 Características principales
-
-- API REST rápida y estructurada.
-- Base de datos completa de España (incluida en el repositorio).
-- Frontend moderno y minimalista con Astro.
-- Código abierto, modular y fácil de extender.
-- Documentación integrada en el propio frontend.
-- Preparado para despliegue en servidores externos.
+Frontend de documentación en **Astro**: [spainapi.vercel.app](https://spainapi.vercel.app)
 
 ---
 
-## 📁 Estructura del repositorio
-- /BACKEND → API REST en Spring Boot
-- /FRONTEND → Sitio web en Astro (documentación + navegación)
-- spain.sql → Base de datos completa
-
-## 🧰 Requisitos previos
-
-### Backend (Spring Boot)
-- Java **17+**
-- Maven **3.8+**
-- MySQL (**versión incluida en XAMPP**, perfectamente compatible)
-- XAMPP ejecutando el servicio MySQL
-
-### Frontend (Astro)
-- Node.js **18+**
-- npm (incluido con Node)
-
----
-
-## 🗄️ Configuración de la base de datos (MySQL / XAMPP)
-
-1. Arranca **MySQL** y **Apache** desde XAMPP.
-2. Accede a **phpMyAdmin** o consola MySQL.
-3. Crea la base de datos:
-
-```sql
-Importa el archivo:
-
-Desde phpMyAdmin → Importar → seleccionar spain.sql
-
-O por terminal:
-
-mysql -u root -p spain < spain.sql
+## 📁 Estructura
 
 ```
+/BACKEND          → API REST (Spring Boot + Java 17)
+/FRONTEND         → Documentación (Astro)
+spain.sql         → Base de datos completa (MySQL)
+docker-compose.yml → Entorno completo con Docker
+```
 
->**Nota**: en XAMPP el usuario suele ser root sin contraseña.
+---
 
-⚙️ Configuración del Backend (Spring Boot)
+## 🚀 Instalación rápida con Docker (recomendado)
 
-En:
-
-/BACKEND/src/main/resources/
-
-****
-verás:
-application.properties.example
-
-
-Cópialo, adaptalo (Vienen ejemplo para MySql y para supabase) y renómbralo como:
-
-application.properties
-
-
-Configura tu conexión MySQL:
+**Requisitos:** Docker + Docker Compose
 
 ```bash
-spring.datasource.url=jdbc:mysql://localhost:3306/spain
-spring.datasource.username=root
-spring.datasource.password=
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-
-spring.jpa.hibernate.ddl-auto=none
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+git clone https://github.com/PabloGonSan8/Spain.git
+cd Spain
+cp .env.example .env        # edita .env y pon tu contraseña
+docker compose up --build
 ```
 
-****
-🚀 Ejecutar Backend (API)
+API disponible en `http://localhost:8080`.
+
+> La primera vez tarda ~2-3 minutos mientras MySQL importa los datos.
+
+---
+
+## 🔧 Instalación manual (XAMPP / MySQL)
+
+**Requisitos:** Java 17+, Maven 3.8+, MySQL 8
+
+```bash
+# 1. Importar la base de datos
+mysql -u root -p < spain.sql
+
+# 2. Ejecutar el backend
 cd BACKEND
 mvn spring-boot:run
+```
 
+API disponible en `http://localhost:8080`.
 
-API disponible en:
+> En XAMPP el usuario suele ser `root` sin contraseña.
 
-http://localhost:8080
+---
 
-🌐 Frontend (Astro)
-Frontend disponible en:
+## 📘 Endpoints
 
-<a href="https://spainapi.vercel.app/">Spain API</a>
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| GET | `/` | Estado de la API `{"status":"ok"}` |
+| GET | `/ccaa` | Todas las comunidades autónomas |
+| GET | `/ccaa/byName?name={CcAa}` | CCAA por nombre |
+| GET | `/ccaa/provincia` | CCAA con sus provincias |
+| GET | `/provincias` | Todas las provincias |
+| GET | `/provincias/byName?name={Provincia}` | Provincia por nombre |
+| GET | `/provincias/localidades` | Provincias con sus localidades |
+| GET | `/localidades` | Todas las localidades |
+| GET | `/localidades/byName?name={Localidad}` | Localidad por nombre |
 
-📘 Documentación de la API
+---
 
-La documentación completa se muestra automáticamente en el frontend:
+## 🌐 Frontend
 
-<a href="https://spainapi.vercel.app/documentacion">Spain API - Documentation</a>
+Desplegado en [spainapi.vercel.app/documentacion](https://spainapi.vercel.app/documentacion).
 
+Para ejecutar en local:
 
-Incluye:
+```bash
+cd FRONTEND
+npm install
+npm run dev
+```
 
-- Descripción de endpoints
+---
 
-- Ejemplos de respuestas
+## 🤝 Contribuir
 
-- Visual estilo Postman
+1. Fork del repositorio
+2. Crea una rama: `feature/nueva-funcionalidad`
+3. Realiza tus cambios
+4. Envía un Pull Request
 
-- Explicaciones claras orientadas a desarrolladores
+---
 
-## 🤝 Contribuir al proyecto (Open Source)
+## 📜 Licencia
 
-Este proyecto busca ser un ejemplo profesional de arquitectura sencilla y bien organizada.
-Cualquier mejora es bienvenida.
+MIT — libre uso, modificación y distribución.
 
-Pasos:
+## ✨ Autor
 
-1. Haz un fork del repositorio.
-
-2. Crea una rama:
-
-3. feature/nueva-funcionalidad
-
-4. Realiza tus cambios.
-
-5. Envía un Pull Request.
-
-
-📜 Licencia
-
-Licencia MIT — libre uso, modificación y distribución.
-
-✨ Autor
-
-Desarrollado por <a href="https://github.com/PabloGonSan8">PabloGonSan8</a>, como proyecto open-source enfocado en calidad, claridad y utilidad real.
+Desarrollado por [PabloGonSan8](https://github.com/PabloGonSan8).

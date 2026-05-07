@@ -1,7 +1,6 @@
 package es.spain.controller;
 
 import es.spain.dto.*;
-import es.spain.model.Ccaa;
 import es.spain.repository.CcaaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,30 +19,26 @@ public class CcaaController {
     @Autowired
     private CcaaRepository ccaaRepository;
 
-    private CcaaDTO mapToDto(Ccaa ccaa){
-        return new CcaaDTO(ccaa.getNombre());
-    }
-
     @GetMapping
-    public List<CcaaDTO> getAllCcaa(){
-        return ccaaRepository.findAll().stream().map(this::mapToDto).toList();
+    public List<CcaaDTO> getAllCcaa() {
+        return ccaaRepository.findAll().stream()
+                .map(c -> new CcaaDTO(c.getNombre()))
+                .toList();
     }
 
     @GetMapping("byName")
-    public CcaaDTO getCcaaByName(@RequestParam(value = "name") String name){
-        return ccaaRepository.findAll().stream()
-                .filter(p-> p.getNombre().equalsIgnoreCase(name))
-                .findFirst()
-                .map(this::mapToDto)
+    public CcaaDTO getCcaaByName(@RequestParam String name) {
+        return ccaaRepository.findByNombreIgnoreCase(name)
+                .map(c -> new CcaaDTO(c.getNombre()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("provincia")
-    public List<CcaaProvinciaDTO> getCcaaProvincia(){
-       return ccaaRepository.findAll().stream()
+    public List<CcaaProvinciaDTO> getCcaaProvincia() {
+        return ccaaRepository.findAllWithProvincias().stream()
                 .map(ccaa -> {
                     List<ProvinciaDTO> provinciaDtos = ccaa.getProvincias().stream()
-                            .map(provincia -> new ProvinciaDTO(provincia.getNombre()))
+                            .map(p -> new ProvinciaDTO(p.getNombre()))
                             .toList();
                     return new CcaaProvinciaDTO(ccaa.getNombre(), provinciaDtos);
                 })
